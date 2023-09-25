@@ -1,0 +1,33 @@
+--- 
+ - name: Create User, Group, Folder , Files & InLine Text Ansible Playbook
+   hosts: all
+   tasks:
+
+     - name: Create User
+       user:
+         name: ansible
+         state: present
+
+     - name: Create Group
+       group:
+         name: ansiblegrp
+         state: present
+
+     - name: Create AnsibleCity Directory
+       file: 
+         path: /ansiblecity
+         state: directory
+         owner: ansible
+         group: ansiblegrp
+         mode: '550'
+
+     - name: Create File in AnsilbeCity Directory
+       file: 
+        path: /ansiblecity/test.txt
+        state: touch
+
+     - name: Write line in file
+       lineinfile: 
+        path: /ansiblecity/test.txt
+        line: 'I will be Ansilbe Engineer'
+          #        create: yes
